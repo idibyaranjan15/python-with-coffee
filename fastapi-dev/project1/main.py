@@ -1,51 +1,50 @@
 from fastapi import FastAPI
 app=FastAPI()
-
 BOOKS = [
     {
-        "title": "title One",
-        "author": "author One",
-        "category": "Science"
+        "title": "title one",
+        "author": "author one",
+        "category": "science"
     },
     {
-        "title": "title Two",
-        "author": "author Two",
-        "category": "Arts"
+        "title": "title two",
+        "author": "author two",
+        "category": "arts"
     },
     {
-        "title": "title Three",
-        "author": "author Three",
-        "category": "Arts"
+        "title": "title three",
+        "author": "author three",
+        "category": "arts"
     },
     {
-        "title": "title Four",
-        "author": "author Four",
-        "category": "Commerce"
+        "title": "title four",
+        "author": "author four",
+        "category": "commerce"
     },
     {
-        "title": "title Five",
-        "author": "author Five",
-        "category": "Arts"
+        "title": "title five",
+        "author": "author five",
+        "category": "arts"
     },
     {
-        "title": "title Six",
-        "author": "author Six",
-        "category": "Science"
+        "title": "title six",
+        "author": "author six",
+        "category": "science"
     },
     {
-        "title": "title Seven",
-        "author": "author Seven",
-        "category": "Science"
+        "title": "title seven",
+        "author": "author seven",
+        "category": "science"
     },
     {
-        "title": "title Eight",
-        "author": "author Eight",
-        "category": "Commerce"
+        "title": "title eight",
+        "author": "author eight",
+        "category": "commerce"
     },
     {
-        "title": "title Nine",
-        "author": "author Nine",
-        "category": "Arts"
+        "title": "title nine",
+        "author": "author nine",
+        "category": "arts"
     }
 ]
 
@@ -61,3 +60,10 @@ async def read_all_books(book_title:str):
         if book.get("title").casefold()==book_title.casefold():
             return book
     
+@app.get("/books/{book_author}/")
+async def read_ctaegory_by_query(book_author:str,category:str):
+        books_to_return=[]
+        for book in BOOKS:
+            if book.get("category").casefold()==category.casefold()  and book.get("author").casefold()==book_author.casefold():
+                books_to_return.append(book)
+        return books_to_return
